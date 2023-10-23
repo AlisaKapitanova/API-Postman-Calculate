@@ -1,0 +1,592 @@
+{
+	"info": {
+		"_postman_id": "92e01c9b-7b0b-41db-bdf2-a614b48d26a9",
+		"name": "Calculate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add: params is number",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking the result of addition\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"    \r",
+							"     let a = pm.request.url.query.get('a');\r",
+							"     let b = pm.request.url.query.get('b');\r",
+							"     let result = pm.response.json().result;\r",
+							"     let expected = Number(a) + Number(b);\r",
+							"\r",
+							"    pm.expect(result).to.equal(expected);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "c9dfa835-6b04-4f9e-93fe-340b24ec89d7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a={{a}}&b={{b}}",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "{{a}}"
+						},
+						{
+							"key": "b",
+							"value": "{{b}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add: params a is - (negative)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking the result of addition\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"    \r",
+							"     let a = pm.request.url.query.get('a');\r",
+							"     let b = pm.request.url.query.get('b');\r",
+							"     let result = pm.response.json().result;\r",
+							"     let expected = Number(a) + Number(b);\r",
+							"\r",
+							"    pm.expect(result).to.equal(expected);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "5de7072b-a92f-49d1-b751-19b53dfb26d4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a=-19&b={{b}}",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "-19"
+						},
+						{
+							"key": "b",
+							"value": "{{b}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add: params a is noninteger",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking the result of addition\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"    \r",
+							"     let a = pm.request.url.query.get('a');\r",
+							"     let b = pm.request.url.query.get('b');\r",
+							"     let result = pm.response.json().result;\r",
+							"     let expected = Number(a) + Number(b);\r",
+							"\r",
+							"    pm.expect(result).to.equal(expected);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "539c72d7-ded4-4789-b9e7-0dbd0d11e414",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a=0.35&b={{b}}",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "0.35"
+						},
+						{
+							"key": "b",
+							"value": "{{b}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add: params is random number",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"let randomNum = Math.floor(Math.random() * 100) + 1;\r",
+							"pm.environment.set(\"randomNumber\", randomNum);\r",
+							"\r",
+							"pm.test(\"Проверка результата сложения\", function () {\r",
+							"\r",
+							"    pm.response.to.be.json;\r",
+							"\r",
+							" let  a = pm.request.url.query.get('a');\r",
+							" let b = pm.request.url.query.get('b');\r",
+							" let result = pm.response.json().result;\r",
+							" let expected = Number(a) + Number(b);\r",
+							"\r",
+							" pm.expect(result).to.equal(expected);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ce03d17a-95fb-4761-97a4-7869539b8e4c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "5c570b1e-23c2-43cc-a6f9-89b8b5fe7ea1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/divide?a={{randomNumber}}&b=4",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"divide"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "{{randomNumber}}"
+						},
+						{
+							"key": "b",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add: params a is string",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking for 'error' and its message\", function () {\r",
+							"     pm.response.to.be.json;\r",
+							"     pm.expect(pm.response.json()).to.have.property('error');\r",
+							"     pm.expect(pm.response.json().error).to.equal(\"Both a and b should be numbers.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "0e268b06-34c0-4bc1-8acc-4329d666a388",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a=j&b=10",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "j"
+						},
+						{
+							"key": "b",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add: params b is string",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking for 'error' and its message\", function () {\r",
+							"     pm.response.to.be.json;\r",
+							"     pm.expect(pm.response.json()).to.have.property('error');\r",
+							"     pm.expect(pm.response.json().error).to.equal(\"Both a and b should be numbers.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "20dddf19-43c2-4d44-a874-7a34b4e2d22c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a=5&b=h",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "5"
+						},
+						{
+							"key": "b",
+							"value": "h"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add: params a and b is string",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking for 'error' and its message\", function () {\r",
+							"     pm.response.to.be.json;\r",
+							"     pm.expect(pm.response.json()).to.have.property('error');\r",
+							"     pm.expect(pm.response.json().error).to.equal(\"Both a and b should be numbers.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "857f52d0-92ff-4cc7-867f-986d4008f0ea",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a=j&b=h",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "j"
+						},
+						{
+							"key": "b",
+							"value": "h"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add: without params a and b",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27349b64-47ca-4f01-a829-7f964ab3070b",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking for 'error' and its message\", function () {\r",
+							"     pm.response.to.be.json;\r",
+							"     pm.expect(pm.response.json()).to.have.property('error');\r",
+							"     pm.expect(pm.response.json().error).to.equal(\"Both \\\"a\\\" and \\\"b\\\" query parameters are required.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "db3ee7d1-8517-4305-a2b6-65d2efc64f70",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{base URL}}/api/math/add"
+			},
+			"response": []
+		},
+		{
+			"name": "add: without params а",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27349b64-47ca-4f01-a829-7f964ab3070b",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking for 'error' and its message\", function () {\r",
+							"     pm.response.to.be.json;\r",
+							"     pm.expect(pm.response.json()).to.have.property('error');\r",
+							"     pm.expect(pm.response.json().error).to.equal(\"Both \\\"a\\\" and \\\"b\\\" query parameters are required.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "9b4b3aaa-0728-4ae0-a913-5ed9a9aa40e0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?b=6",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "b",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add: without params b",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27349b64-47ca-4f01-a829-7f964ab3070b",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking for 'error' and its message\", function () {\r",
+							"     pm.response.to.be.json;\r",
+							"     pm.expect(pm.response.json()).to.have.property('error');\r",
+							"     pm.expect(pm.response.json().error).to.equal(\"Both \\\"a\\\" and \\\"b\\\" query parameters are required.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "12acdf94-d189-4229-832c-b239095950f6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a=8",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "13568012-6a57-4e56-b18b-54383b02c210",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d20f6dc6-ec0a-4a66-84fc-c0e56d3b7429",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": " https://czechitas-api.vercel.app",
+			"type": "string"
+		},
+		{
+			"key": "a",
+			"value": "5"
+		},
+		{
+			"key": "b",
+			"value": "8"
+		},
+		{
+			"key": "randomNumber",
+			"value": "pm.environment.set(\"randomNumber\", randomNum);"
+		},
+		{
+			"value": "",
+			"type": "string"
+		}
+	]
+}
