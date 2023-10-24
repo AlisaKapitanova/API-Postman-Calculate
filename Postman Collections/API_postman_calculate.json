@@ -192,8 +192,8 @@
 							"});\r",
 							"\r",
 							"\r",
-							"let randomNum = Math.floor(Math.random() * 100) + 1;\r",
-							"pm.environment.set(\"randomNumber\", randomNum);\r",
+							"//let randomNum = Math.floor(Math.random() * 100) + 1;\r",
+							"//pm.environment.set(\"randomNumber\", randomNum);\r",
 							"\r",
 							"pm.test(\"Checking the result of addition\", function () {\r",
 							"\r",
@@ -230,23 +230,97 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base URL}}/api/math/divide?a={{randomNumber}}&b=4",
+					"raw": "{{base URL}}/api/math/add?a={{$randomInt}}&b={{$randomInt}}",
 					"host": [
 						"{{base URL}}"
 					],
 					"path": [
 						"api",
 						"math",
-						"divide"
+						"add"
 					],
 					"query": [
 						{
 							"key": "a",
-							"value": "{{randomNumber}}"
+							"value": "{{$randomInt}}"
 						},
 						{
 							"key": "b",
-							"value": "4"
+							"value": "{{$randomInt}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add: params is random number Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//let randomNum = Math.floor(Math.random() * 100) + 1;\r",
+							"//pm.environment.set(\"randomNumber\", randomNum);\r",
+							"\r",
+							"pm.test(\"Checking the result of addition\", function () {\r",
+							"\r",
+							"    pm.response.to.be.json;\r",
+							"\r",
+							" let a = pm.request.url.query.get('a');\r",
+							" let b = pm.request.url.query.get('b');\r",
+							" let result = pm.response.json().result;\r",
+							" let expected = Number(a) + Number(b);\r",
+							"\r",
+							" pm.expect(result).to.equal(expected);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ce03d17a-95fb-4761-97a4-7869539b8e4c",
+						"exec": [
+							"let randomNum = Math.floor(Math.random() * 100) + 1;\r",
+							"pm.environment.set(\"randomNumber\", randomNum);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "1efc833d-6007-4f0f-a18e-155ebfad8001",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a={{$randomInt}}&b={{$randomInt}}",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "{{$randomInt}}"
+						},
+						{
+							"key": "b",
+							"value": "{{$randomInt}}"
 						}
 					]
 				}
