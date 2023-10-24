@@ -254,7 +254,7 @@
 			"response": []
 		},
 		{
-			"name": "add: params is random number Copy",
+			"name": "add: params is random JS",
 			"event": [
 				{
 					"listen": "test",
@@ -265,9 +265,6 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"\r",
-							"//let randomNum = Math.floor(Math.random() * 100) + 1;\r",
-							"//pm.environment.set(\"randomNumber\", randomNum);\r",
 							"\r",
 							"pm.test(\"Checking the result of addition\", function () {\r",
 							"\r",
@@ -304,7 +301,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base URL}}/api/math/add?a={{$randomInt}}&b={{$randomInt}}",
+					"raw": "{{base URL}}/api/math/add?a={{randomNumber}}&b={{randomNumber}}",
 					"host": [
 						"{{base URL}}"
 					],
@@ -316,11 +313,11 @@
 					"query": [
 						{
 							"key": "a",
-							"value": "{{$randomInt}}"
+							"value": "{{randomNumber}}"
 						},
 						{
 							"key": "b",
-							"value": "{{$randomInt}}"
+							"value": "{{randomNumber}}"
 						}
 					]
 				}
