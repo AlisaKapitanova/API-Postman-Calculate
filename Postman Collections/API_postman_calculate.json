@@ -415,8 +415,8 @@
 					"script": {
 						"id": "ce03d17a-95fb-4761-97a4-7869539b8e4c",
 						"exec": [
-							"let randomNum = Math.floor(Math.random() * 100) + 1;\r",
-							"pm.environment.set(\"randomNumber\", randomNum);"
+							"let maxValue = Number.MAX_VALUE;\r",
+							"pm.environment.set(\"maxValue\", maxValue);"
 						],
 						"type": "text/javascript"
 					}
@@ -430,7 +430,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base URL}}/api/math/add?a={{randomNumber}}&b={{randomNumber}}",
+					"raw": "{{base URL}}/api/math/add?a={{maxValue}}&b=10",
 					"host": [
 						"{{base URL}}"
 					],
@@ -442,11 +442,11 @@
 					"query": [
 						{
 							"key": "a",
-							"value": "{{randomNumber}}"
+							"value": "{{maxValue}}"
 						},
 						{
 							"key": "b",
-							"value": "{{randomNumber}}"
+							"value": "10"
 						}
 					]
 				}
