@@ -98,7 +98,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base URL}}/api/math/add?a={{a}}&b={{b}}",
+					"raw": "{{base URL}}/api/math/add?a=Number.MAX_VALUE&b=0",
 					"host": [
 						"{{base URL}}"
 					],
@@ -110,11 +110,11 @@
 					"query": [
 						{
 							"key": "a",
-							"value": "{{a}}"
+							"value": "Number.MAX_VALUE"
 						},
 						{
 							"key": "b",
-							"value": "{{b}}"
+							"value": "0"
 						}
 					]
 				}
@@ -156,7 +156,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base URL}}/api/math/add?a={{a}}&b={{b}}",
+					"raw": "{{base URL}}/api/math/add?a=-157.864&b=-467.467",
 					"host": [
 						"{{base URL}}"
 					],
@@ -168,11 +168,11 @@
 					"query": [
 						{
 							"key": "a",
-							"value": "{{a}}"
+							"value": "-157.864"
 						},
 						{
 							"key": "b",
-							"value": "{{b}}"
+							"value": "-467.467"
 						}
 					]
 				}
@@ -666,14 +666,19 @@
 					"script": {
 						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
 						"exec": [
-							"pm.test(\"Status code is 400\", function () {\r",
-							"    pm.response.to.have.status(400);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Checking for 'error' and its message\", function () {\r",
-							"     pm.response.to.be.json;\r",
-							"     pm.expect(pm.response.json()).to.have.property('error');\r",
-							"     pm.expect(pm.response.json().error).to.equal(\"Both a and b should be numbers.\");\r",
+							"pm.test(\"Checking the result of addition\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"    \r",
+							"     let a = pm.request.url.query.get('a');\r",
+							"     let b = pm.request.url.query.get('b');\r",
+							"     let result = pm.response.json().result;\r",
+							"     let expected = Number(a) + Number(b);\r",
+							"\r",
+							"    pm.expect(result).to.equal(expected);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -688,7 +693,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base URL}}/api/math/add?a=j&b=h",
+					"raw": "{{base URL}}/api/math/add?a=5.28567&b=7.323565",
 					"host": [
 						"{{base URL}}"
 					],
@@ -700,11 +705,11 @@
 					"query": [
 						{
 							"key": "a",
-							"value": "j"
+							"value": "5.28567"
 						},
 						{
 							"key": "b",
-							"value": "h"
+							"value": "7.323565"
 						}
 					]
 				}
