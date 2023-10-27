@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "add: params is number",
+			"name": "add: params are number",
 			"event": [
 				{
 					"listen": "test",
@@ -431,21 +431,26 @@
 			"response": []
 		},
 		{
-			"name": "add: params a is a %",
+			"name": "add: params a is %",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
 						"exec": [
-							"pm.test(\"Status code is 400\", function () {\r",
-							"    pm.response.to.have.status(400);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Checking for 'error' and its message\", function () {\r",
-							"     pm.response.to.be.json;\r",
-							"     pm.expect(pm.response.json()).to.have.property('error');\r",
-							"     pm.expect(pm.response.json().error).to.equal(\"Both a and b should be numbers.\");\r",
+							"pm.test(\"Checking the result of addition\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"    \r",
+							"     let a = pm.request.url.query.get('a');\r",
+							"     let b = pm.request.url.query.get('b');\r",
+							"     let result = pm.response.json().result;\r",
+							"     let expected = Number(a) + Number(b);\r",
+							"\r",
+							"    pm.expect(result).to.equal(expected);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -460,7 +465,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base URL}}/api/math/add?a=8$&b=60",
+					"raw": "{{base URL}}/api/math/add?a=60&b=5 %",
 					"host": [
 						"{{base URL}}"
 					],
@@ -472,11 +477,11 @@
 					"query": [
 						{
 							"key": "a",
-							"value": "8$"
+							"value": "60"
 						},
 						{
 							"key": "b",
-							"value": "60"
+							"value": "5 %"
 						}
 					]
 				}
@@ -538,7 +543,7 @@
 			"response": []
 		},
 		{
-			"name": "add: params a and b is string",
+			"name": "add: params a and b are string",
 			"event": [
 				{
 					"listen": "test",
@@ -560,6 +565,59 @@
 				}
 			],
 			"id": "857f52d0-92ff-4cc7-867f-986d4008f0ea",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a=j&b=h",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "j"
+						},
+						{
+							"key": "b",
+							"value": "h"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add: params a and b are  decimal numbers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking for 'error' and its message\", function () {\r",
+							"     pm.response.to.be.json;\r",
+							"     pm.expect(pm.response.json()).to.have.property('error');\r",
+							"     pm.expect(pm.response.json().error).to.equal(\"Both a and b should be numbers.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "76392455-8609-4f9a-9844-2b68b00ae479",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
