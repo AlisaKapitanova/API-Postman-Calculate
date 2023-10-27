@@ -64,64 +64,6 @@
 			"response": []
 		},
 		{
-			"name": "add: params MAX_VALUE",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Checking the result of addition\", function () {\r",
-							"    pm.response.to.be.json;\r",
-							"    \r",
-							"     let a = pm.request.url.query.get('a');\r",
-							"     let b = pm.request.url.query.get('b');\r",
-							"     let result = pm.response.json().result;\r",
-							"     let expected = Number(a) + Number(b);\r",
-							"\r",
-							"    pm.expect(result).to.equal(expected);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "4d085b15-5eec-4448-bfe6-e28b471f9f56",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base URL}}/api/math/add?a=Number.MAX_VALUE&b=0",
-					"host": [
-						"{{base URL}}"
-					],
-					"path": [
-						"api",
-						"math",
-						"add"
-					],
-					"query": [
-						{
-							"key": "a",
-							"value": "Number.MAX_VALUE"
-						},
-						{
-							"key": "b",
-							"value": "0"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "add: params are negative   numbers",
 			"event": [
 				{
@@ -410,6 +352,77 @@
 				}
 			],
 			"id": "1efc833d-6007-4f0f-a18e-155ebfad8001",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a={{randomNumber}}&b={{randomNumber}}",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "{{randomNumber}}"
+						},
+						{
+							"key": "b",
+							"value": "{{randomNumber}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add: params is random JS Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Checking the result of addition\", function () {\r",
+							"\r",
+							"    pm.response.to.be.json;\r",
+							"\r",
+							" let a = pm.request.url.query.get('a');\r",
+							" let b = pm.request.url.query.get('b');\r",
+							" let result = pm.response.json().result;\r",
+							" let expected = Number(a) + Number(b);\r",
+							"\r",
+							" pm.expect(result).to.equal(expected);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ce03d17a-95fb-4761-97a4-7869539b8e4c",
+						"exec": [
+							"let randomNum = Math.floor(Math.random() * 100) + 1;\r",
+							"pm.environment.set(\"randomNumber\", randomNum);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "41ad99e1-bc58-4380-8f39-5d56076a4a90",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
