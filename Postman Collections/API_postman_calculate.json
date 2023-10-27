@@ -407,7 +407,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base URL}}/api/math/add?a=j&b=10",
+					"raw": "{{base URL}}/api/math/add?a=8$&b=60",
 					"host": [
 						"{{base URL}}"
 					],
@@ -419,11 +419,64 @@
 					"query": [
 						{
 							"key": "a",
-							"value": "j"
+							"value": "8$"
 						},
 						{
 							"key": "b",
-							"value": "10"
+							"value": "60"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add: params a is a %",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking for 'error' and its message\", function () {\r",
+							"     pm.response.to.be.json;\r",
+							"     pm.expect(pm.response.json()).to.have.property('error');\r",
+							"     pm.expect(pm.response.json().error).to.equal(\"Both a and b should be numbers.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "ba2a97b6-aaa2-4903-92cf-edb1bcd45a23",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a=8$&b=60",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "8$"
+						},
+						{
+							"key": "b",
+							"value": "60"
 						}
 					]
 				}
