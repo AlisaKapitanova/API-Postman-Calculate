@@ -64,6 +64,64 @@
 			"response": []
 		},
 		{
+			"name": "add: params are number Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking the result of addition\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"    \r",
+							"     let a = pm.request.url.query.get('a');\r",
+							"     let b = pm.request.url.query.get('b');\r",
+							"     let result = pm.response.json().result;\r",
+							"     let expected = Number(a) + Number(b);\r",
+							"\r",
+							"    pm.expect(result).to.equal(expected);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "08425e64-4ca1-428d-a8da-3db2c5b0532b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a={{a}}&b={{b}}",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "{{a}}"
+						},
+						{
+							"key": "b",
+							"value": "{{b}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "add: params are negative   numbers",
 			"event": [
 				{
@@ -376,77 +434,6 @@
 						{
 							"key": "b",
 							"value": "{{randomNumber}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "add: params is max value",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"\r",
-							"pm.test(\"Checking the result of addition\", function () {\r",
-							"\r",
-							"    pm.response.to.be.json;\r",
-							"\r",
-							" let a = pm.request.url.query.get('a');\r",
-							" let b = pm.request.url.query.get('b');\r",
-							" let result = pm.response.json().result;\r",
-							" let expected = Number(a) + Number(b);\r",
-							"\r",
-							" pm.expect(result).to.equal(expected);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "ce03d17a-95fb-4761-97a4-7869539b8e4c",
-						"exec": [
-							"var maxValue = pm.environment.get(\"maxValue\");\r",
-							"console.log(\"Максимальное значение: \" + maxValue);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "41ad99e1-bc58-4380-8f39-5d56076a4a90",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{base URL}}/api/math/add?a={{maxValue}}&b=10{",
-					"host": [
-						"{{base URL}}"
-					],
-					"path": [
-						"api",
-						"math",
-						"add"
-					],
-					"query": [
-						{
-							"key": "a",
-							"value": "{{maxValue}}"
-						},
-						{
-							"key": "b",
-							"value": "10{"
 						}
 					]
 				}
