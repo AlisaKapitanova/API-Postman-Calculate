@@ -944,6 +944,10 @@
 		{
 			"value": "",
 			"type": "string"
+		},
+		{
+			"key": "minValue",
+			"value": "Number.MAX_VALUE"
 		}
 	]
 }
