@@ -948,6 +948,10 @@
 		{
 			"key": "minValue",
 			"value": "Number.MAX_VALUE"
+		},
+		{
+			"key": "can",
+			"value": "132523"
 		}
 	]
 }
