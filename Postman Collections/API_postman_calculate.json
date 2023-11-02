@@ -98,7 +98,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base URL}}/api/math/add?a=1.7976931348623157e+308&b={{b}}",
+					"raw": "{{base URL}}/api/math/add?a=1.7976931348623157e308&b={{b}}",
 					"host": [
 						"{{base URL}}"
 					],
@@ -110,7 +110,7 @@
 					"query": [
 						{
 							"key": "a",
-							"value": "1.7976931348623157e+308"
+							"value": "1.7976931348623157e308"
 						},
 						{
 							"key": "b",
@@ -1051,7 +1051,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "13568012-6a57-4e56-b18b-54383b02c210",
+				"id": "931f99e3-bb43-48a5-9bfe-da995fc559b7",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1061,7 +1061,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "d20f6dc6-ec0a-4a66-84fc-c0e56d3b7429",
+				"id": "03ed7b5d-fa7d-40e3-b33d-5ac9b7563daf",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1071,7 +1071,7 @@
 	],
 	"variable": [
 		{
-			"key": "baseURL",
+			"key": "base URL",
 			"value": " https://czechitas-api.vercel.app",
 			"type": "string"
 		},
