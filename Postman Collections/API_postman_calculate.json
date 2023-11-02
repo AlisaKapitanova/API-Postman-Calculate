@@ -64,6 +64,64 @@
 			"response": []
 		},
 		{
+			"name": "add: params a is 1.7976931348623157e+308.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking the result of addition\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"    \r",
+							"     let a = pm.request.url.query.get('a');\r",
+							"     let b = pm.request.url.query.get('b');\r",
+							"     let result = pm.response.json().result;\r",
+							"     let expected = Number(a) + Number(b);\r",
+							"\r",
+							"    pm.expect(result).to.equal(expected);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "e6a39e7b-1499-4d01-9aaa-544e659c2df3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a={{a}}&b={{b}}",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "{{a}}"
+						},
+						{
+							"key": "b",
+							"value": "{{b}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "add: params a is extremne velke",
 			"event": [
 				{
