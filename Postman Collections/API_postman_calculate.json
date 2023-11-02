@@ -98,7 +98,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base URL}}/api/math/add?a={{a}}&b={{b}}",
+					"raw": "{{base URL}}/api/math/add?a=1.7976931348623157e+308&b={{b}}",
 					"host": [
 						"{{base URL}}"
 					],
@@ -110,7 +110,75 @@
 					"query": [
 						{
 							"key": "a",
-							"value": "{{a}}"
+							"value": "1.7976931348623157e+308"
+						},
+						{
+							"key": "b",
+							"value": "{{b}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add: params a is maxValue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "853cf94d-2725-4b5c-a5a0-ec51c1f656ac",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checking the result of addition\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"    \r",
+							"     let a = pm.request.url.query.get('a');\r",
+							"     let b = pm.request.url.query.get('b');\r",
+							"     let result = pm.response.json().result;\r",
+							"     let expected = Number(a) + Number(b);\r",
+							"\r",
+							"    pm.expect(result).to.equal(expected);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3998589e-1c1b-4a9a-8a0b-fc4496ee4a1f",
+						"exec": [
+							"pm.variables.set(\"maxValue\", Number.MAX_VALUE);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "47272ee3-aab5-40b1-bcc9-f0554de866b9",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base URL}}/api/math/add?a={{maxValue}}&b={{b}}",
+					"host": [
+						"{{base URL}}"
+					],
+					"path": [
+						"api",
+						"math",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "{{maxValue}}"
 						},
 						{
 							"key": "b",
@@ -190,7 +258,7 @@
 						},
 						{
 							"key": "c",
-							"value": "{{can}}",
+							"value": "",
 							"type": "text",
 							"disabled": true
 						}
